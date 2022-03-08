@@ -1,0 +1,16 @@
+- hosts: all
+
+  tasks:
+    - name: Install WebSphere Application Server ND v9.0
+      ibmim:
+        name: com.ibm.websphere.ND.v90 com.ibm.java.jdk.v8
+        state: present
+        ibmim: /opt/IBM/InstallationManager
+        dest: /opt/IBM/WebSphere/AppServer
+        id: 
+        - com.ibm.java.jdk.v8_8.0.3000.20160526_1317
+        - com.ibm.websphere.ND.v90_9.0.0.20160526_1854
+        install_fixes: none
+        repositories:
+        - http://192.168.56.108/was9/
+        - http://192.168.56.108/WAS/sdk/

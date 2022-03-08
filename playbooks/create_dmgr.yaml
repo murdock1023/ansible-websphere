@@ -1,0 +1,13 @@
+- hosts: all
+
+  tasks:
+    - name: Create Dmgr Profile
+      profile_dmgr:
+        state: present
+        wasdir: /opt/IBM/WebSphere/AppServer
+        name: Dmgr01
+        cell_name: wasCell01
+        host_name: was
+        node_name: CellManager01
+        username: wasadmin
+        password: wasadmin

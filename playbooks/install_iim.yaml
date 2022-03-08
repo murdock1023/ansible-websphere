@@ -1,0 +1,26 @@
+- hosts: all
+
+  tasks:
+    - name: Download installer zip
+      get_url:
+        url: http://192.168.56.108/agent.installer.linux.gtk.x86_64_1.9.2001.20211222_1411.zip
+        dest: /tmp/
+
+    - name: Create IM directory
+      file:
+        state: directory
+        path: /tmp/im
+
+    - name: Unarchive installer zip
+      unarchive:
+        remote_src: yes
+        src: /tmp/agent.installer.linux.gtk.x86_64_1.9.2001.20211222_1411.zip
+        dest: /tmp/im/
+
+    - name: Install Installation Manager
+      ibmim_installer:
+        src: /tmp/im/
+        state: present
+        dest: /opt/IBM/InstallationManager
+        accessRights: admin
+        logdir: /tmp
